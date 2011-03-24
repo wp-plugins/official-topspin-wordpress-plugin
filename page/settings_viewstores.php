@@ -1,4 +1,17 @@
 <?php
+
+/*
+ *
+ *	Last Modified:			March 23, 2011
+ *
+ *	--------------------------------------
+ *	Change Log
+ *	--------------------------------------
+ *	2011-03-23
+ *		- Updated get_bloginfo('home') to get_home_url();
+ *
+ */
+
 global $store;
 $storesList = $store->getStores();
 ?>
@@ -25,16 +38,16 @@ $storesList = $store->getStores();
             <tr id="store-<?=$storeItem->store_id;?>" valign="top">
             	<td class="store-id"><?=$storeItem->store_id;?></td>
             	<td class="store-title">
-                	<strong><a href="<?=get_bloginfo('home');?>/wp-admin/admin.php?page=topspin/page/settings_edit&amp;action=edit&amp;id=<?=$storeItem->store_id;?>"><?=$storeItem->post_title;?></a></strong>
+                	<strong><a href="<?=get_home_url();?>/wp-admin/admin.php?page=topspin/page/settings_edit&amp;action=edit&amp;id=<?=$storeItem->store_id;?>"><?=$storeItem->post_title;?></a></strong>
                     <div class="row-actions">
-                    	<span class="edit"><a href="<?=get_bloginfo('home');?>/wp-admin/admin.php?page=topspin/page/settings_edit&amp;action=edit&amp;id=<?=$storeItem->store_id;?>">Edit</a> |</span>
-                        <span class="trash"><a class="submitdelete" href="<?=get_bloginfo('home');?>/wp-admin/admin.php?page=topspin/page/settings_edit&amp;action=delete&amp;id=<?=$storeItem->store_id;?>">Trash</a></span>
+                    	<span class="edit"><a href="<?=get_home_url();?>/wp-admin/admin.php?page=topspin/page/settings_edit&amp;action=edit&amp;id=<?=$storeItem->store_id;?>">Edit</a> |</span>
+                        <span class="trash"><a class="submitdelete" href="<?=get_home_url();?>/wp-admin/admin.php?page=topspin/page/settings_edit&amp;action=delete&amp;id=<?=$storeItem->store_id;?>">Trash</a></span>
                     </div>
                 </td>
                 <td class="store-shortcode">[topspin_buy_buttons id=<?=$storeItem->store_id;?>]</td>
                 <td class="store-created-date"><?=date("F j, Y h:i:sa",strtotime($storeItem->created_date));?></td>
             	<td class="store-manage">
-					<a href="<?=get_bloginfo('home');?>/wp-admin/admin.php?page=topspin/page/settings_edit&amp;action=edit&amp;id=<?=$storeItem->store_id;?>">Edit</a> |
+					<a href="<?=get_home_url();?>/wp-admin/admin.php?page=topspin/page/settings_edit&amp;action=edit&amp;id=<?=$storeItem->store_id;?>">Edit</a> |
 					<a href="<?=get_permalink($storeItem->ID);?>" target="_blank">View</a>
                 </td>
             </tr>
