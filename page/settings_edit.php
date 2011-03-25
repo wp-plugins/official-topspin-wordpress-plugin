@@ -1,4 +1,17 @@
 <?php
+
+/*
+ *
+ *	Last Modified:			March 23, 2011
+ *
+ *	--------------------------------------
+ *	Change Log
+ *	--------------------------------------
+ *	2011-03-23
+ *		- Updated get_bloginfo('home') to get_home_url();
+ *
+ */
+
 global $store;
 
 if(!TOPSPIN_ARTIST_ID) $store->setError('No Topspin Artist ID entered.');
@@ -6,6 +19,7 @@ else if(!TOPSPIN_API_KEY) $store->setError('No Topspin API key entered.');
 else if(!TOPSPIN_API_USERNAME) $store->setError('No Topspin API username entered.');
 
 $action = (isset($_GET['action'])) ? $_GET['action'] : 'edit';
+$success = '';
 
 ### Set Default Value
 $storeData = array(
@@ -13,6 +27,7 @@ $storeData = array(
 	'name' => '',
 	'slug' => '',
 	'items_per_page' => 12,
+	'show_all_items' => 0,
 	'grid_columns' => 3,
 	'default_sorting' => 'alphabetical',
 	'default_sorting_by' => 'tag',
@@ -32,7 +47,7 @@ switch($action) {
 		$res = $store->deleteStore($storeData['id']);
 		if($res) {
 			wp_delete_post($storeData['post_id'],0);
-			$success = 'Store has been deleted. <a href="'.get_bloginfo('home').'/wp-admin/admin.php?page=topspin/page/settings_viewstores">View Stores</a>';
+			$success = 'Store has been deleted. <a href="'.get_home_url().'/wp-admin/admin.php?page=topspin/page/settings_viewstores">View Stores</a>';
 		}
 		?>
         <div class="wrap">
