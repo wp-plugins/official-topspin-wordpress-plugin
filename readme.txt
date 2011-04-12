@@ -3,7 +3,7 @@ Contributors: theuprising
 Donate link: http://theuprisingcreative.com/
 Tags: Topspin,store,merchandise,shop,music
 Tested up to: 3.1.1
-Stable tag: 3.1
+Stable tag: 3.1.3
 Requires at least: 3.0.2
 
 Quickly and easily integrate your Topspin Offers into customized, sortable and dynamically generated Store Pages.
@@ -43,7 +43,10 @@ This plugin will not automatically upgrade the v2.0 Topspin Wordpress Plugins - 
 * Immediate output of fully functional Store Pages will little or no CSS or Template customization (novice)
 * Fully customizable Template and CSS files (pro)
 
-= Topspin Artist Account Required.  Please visit: http://topspinmedia.com to sign up. =
+= Requirements =
+* Topspin Artist Account Required.  Please visit: http://topspinmedia.com to sign up
+* PHP 5.0 or higher
+* PHP cUrl (if unsure, please check with your server administrator.)
 
 Plugin developed for Topspin Media by [The Uprising Creative](http://theuprisingcreative.com)
 
@@ -230,10 +233,24 @@ This plugin is in open development.  Over the weeks and months we hope to roll o
 
 == Changelog ==
 
+= 3.1.3 =
+* Updated default simplified and standard template's default css
+* Fixed duplicated item bug on manual sorting mode
+
+= 3.1.2 =
+* Fixed the PHP fatal error calling an undefined method: Topspin_Store::setError() when adding/editing a store
+* Updated the version parsing string in the plugin upgrade functions (bug for PHP versions lower than 5.2)
+* Added the ability to force re-run of all upgrade scripts (for users who are experiencing problems when upgrading their plugins)
+
+= 3.1.1 =
+* Fixed the plugin upgrading check function
+* Added caching for the poster_image_source from the API to the database (new field in the items table)
+* Updated the default item images to pull the size according to the poster_image_source (updated template files)
+
 = 3.1 = 
 * Added automatic selection of the Artist ID based on the API User and API Key 
 * Added ability for users with multiple Artist IDs related to their API User / Key combo to select which artist to use 
-*ÊAdded Simplified Template option for table-based template structure (ideal for out-of-the-box usage with little or no customization requirements) 
+* Added Simplified Template option for table-based template structure (ideal for out-of-the-box usage with little or no customization requirements) 
 * Added Topspin's additional images sizes to the local cache instead of just using the full-size image for everything.  Should give a significant increase in performance and decrease in load-times for users with large original images and/or lots of products.
 * Updated template structure to include sub-directories and the ability to have and select from a set group of multiple templates
 * Updated documentation with regards to new template structure and customization
