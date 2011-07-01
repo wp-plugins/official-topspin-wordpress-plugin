@@ -3,7 +3,7 @@ Contributors: theuprising
 Donate link: http://theuprisingcreative.com/
 Tags: Topspin,store,merchandise,shop,music
 Tested up to: 3.1.1
-Stable tag: 3.1.3.5
+Stable tag: 3.1.3.6
 Requires at least: 3.0.2
 
 Quickly and easily integrate your Topspin Offers into customized, sortable and dynamically generated Store Pages.
@@ -232,6 +232,10 @@ This plugin is in open development.  Over the weeks and months we hope to roll o
 7. Front-End -> View of the Topspin Checkout Flow overlay
 
 == Changelog ==
+
+= 3.1.3.6 =
+* Changed the default image of each item to retrieve the large version instead of the medium
+* Updated the standard template css item list to clear on the last item
 
 = 3.1.3.5 = 
 * Removed <?= php shortcode for those php installations where shortcodes are turned off (via blauwers)

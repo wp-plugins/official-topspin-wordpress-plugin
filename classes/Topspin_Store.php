@@ -3,11 +3,13 @@
 /*
  *	Class:				Topspin Store
  *
- *	Last Modified:		April 12, 2011
+ *	Last Modified:		June 30, 2011
  *
  *	----------------------------------
  *	Change Log
  *	----------------------------------
+ *	2011-06-30
+ 		- updated getItemDefaultImage() default size parameter to "large"
  *	2011-04-12
  		- updated getStoreItems()
  			added GROUP BY item's ID in manual sorting query string
@@ -1116,6 +1118,7 @@ EOD;
 				GROUP BY {$this->wpdb->prefix}topspin_items.id
 EOD;
 				$result = $this->wpdb->get_results($sql,ARRAY_A);
+				## If items order exists (editing)
 				if($storeData['items_order']) {
 					## Global Items ID array
 					$itemsIDs = array();
@@ -1148,8 +1151,10 @@ EOD;
 						}
 					}
 				}
+				## Else doesn't exist (new store)
 				else { $sortedItems = $result; }
 		}
+		## Retrieve the default images of the final items array
 		foreach($sortedItems as $key=>$item) {
 			##	Add Images
 			$sortedItems[$key]['images'] = $this->getItemImages($item['id']);
@@ -1338,7 +1343,7 @@ EOD;
 		return $this->wpdb->get_results($this->wpdb->prepare($sql,array($item_id)),ARRAY_A);
 	}
 	
-	public function getItemDefaultImage($item_id,$poster_image_source,$image_size='medium') {
+	public function getItemDefaultImage($item_id,$poster_image_source,$image_size='large') {
 		##	Retrieves the item's default image
 		##
 		##	PARAMETERS
