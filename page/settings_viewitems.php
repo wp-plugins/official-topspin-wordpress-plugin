@@ -2,11 +2,13 @@
 
 /*
  *
- *	Last Modified:		July 26, 2011
+ *	Last Modified:		September 22, 2011
  *
  *	--------------------------------------
  *	Change Log
  *	--------------------------------------
+ *	2011-09-22
+ 		- Removed Add New button
  *	2011-07-26
  		- Created page
  *
@@ -14,14 +16,10 @@
 
 global $store;
 $itemsList = $store->getArtistItems();
-
 ?>
 
 <div class="wrap">
-	<h2>
-    	Items
-        <a class="button add-new-h2" href="<?php bloginfo('wpurl'); ?>/wp-admin/admin.php?page=topspin/page/settings_edit">Add New</a>
-    </h2>
+	<h2>Items</h2>
 
     <table class="topspin-stores-list wp-list-table widefat fixed" cellspacing="0">
         <thead>
