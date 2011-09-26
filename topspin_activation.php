@@ -1,10 +1,13 @@
 <?php
 /*
- *	Last Modified:		April 6, 2011
+ *	Last Modified:		August 1, 2011
  *
  *	----------------------------------
  *	Change Log
  *	----------------------------------
+ *	2011-08-01
+ 		- updated topspin_activate()
+ 			added new file to run: topspin_stores_featured_items.sql
  *	2011-04-06
  		- updated topspin_activate()
  			added new file to run: topspin_artists.sql
@@ -40,16 +43,17 @@ function topspin_activate() {
 	topspin_run_sql_file('topspin_items_images.sql');
 	topspin_run_sql_file('topspin_offer_types.sql');
 	topspin_run_sql_file('topspin_offer_types_insert.sql');
+	topspin_run_sql_file('topspin_orders.sql');
+	topspin_run_sql_file('topspin_orders_items.sql');
 	topspin_run_sql_file('topspin_settings.sql');
 	topspin_run_sql_file('topspin_stores.sql');
+	topspin_run_sql_file('topspin_stores_featured_items.sql');
 	topspin_run_sql_file('topspin_stores_offer_type.sql');
 	topspin_run_sql_file('topspin_stores_tag.sql');
 	topspin_run_sql_file('topspin_artists.sql');
 	topspin_run_sql_file('topspin_tags.sql');
-	
 	##	Activate Cron
 	wp_schedule_event(time(),'every_5_min','topspin_cron_fetch_items');
-
 }
 
 function topspin_deactivate() {
