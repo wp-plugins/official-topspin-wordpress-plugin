@@ -178,7 +178,10 @@ if($apiStatus) { $apiError = $apiStatus->error_detail; }
             	<th scope="row"><label>Rebuild Database</label></th>
                 <td>
 					<input type="submit" name="cache_all" class="button-primary" value="<?php _e('Rebuild'); ?>" />
-                    <span class="description"><?php echo ($last_cache_all=$store->getSetting('topspin_last_cache_all')) ? 'Last built: '.date('Y-m-d h:i:sa',$last_cache_all+(3600*get_option('gmt_offset'))) : 'No action yet.'; ?></span>
+                    <span class="description">
+                    	<?php echo ($last_cache_all=$store->getSetting('topspin_last_cache_all')) ? 'Last built: '.date('Y-m-d h:i:sa',$last_cache_all+(3600*get_option('gmt_offset'))) : 'No action yet.'; ?>
+                    	(Next build in: <?php echo (wp_next_scheduled('topspin_cron_fetch_items')-time()); ?> seconds)
+                    </span>
                 </td>
             </tr>
         </tbody>
