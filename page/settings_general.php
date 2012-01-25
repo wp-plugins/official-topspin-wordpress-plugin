@@ -1,11 +1,13 @@
 <?php
 
 /*
- *	Last Modified:		August 1, 2011
+ *	Last Modified:		January 24, 2011
  *
  *	----------------------------------
  *	Change Log
  *	----------------------------------
+ *	2012-01-24
+ 		- Nav menu feature @eThan
  *	2011-08-01
  		- Updated saving to delete all currently created store if the artist ID is switched.
  *	2011-04-11
