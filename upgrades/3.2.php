@@ -3,18 +3,19 @@
 /*
  *	3.2 UPGRADE NOTICE
  *	--------------------
- *	
- 	- Upgrades the topspin_currency table (added unique key)
- 	- Add new field to the topspin_tags table (artist_id)
- 	- Runs topspin_store_featured_item.sql
- 	- Migrate all store's featured_item field to the new featured item table
- 	- rebuild database cache
+ *
+ 	2011
+	 	- Upgrades the topspin_currency table (added unique key)
+	 	- Add new field to the topspin_tags table (artist_id)
+	 	- Runs topspin_store_featured_item.sql
+	 	- Migrate all store's featured_item field to the new featured item table
+	 	- rebuild database cache
  */
 
 global $wpdb;
 global $store;
 
-// Checks for curreny unique key
+// Checks for currency unique key
 $sqlCheckCurrencyKeys = <<<EOD
 SHOW KEYS FROM {$wpdb->prefix}topspin_currency where Key_name = 'currency'
 EOD;
@@ -30,7 +31,7 @@ EOD;
 }
 
 // Checks and adds a new field to the topspin_tags table (artist_id)
-if(!topspin_table_column_exists('topspin_tags','artist_id','INT')) {
+if(!topspin_table_column_exists('topspin_tags','artist_id')) {
 	topspin_table_column_add('topspin_tags','artist_id','INT');
 }
 
@@ -39,8 +40,6 @@ topspin_run_sql_file('topspin_stores_featured_item.sql');
 
 // Migrate all featured item ID to the new featured items table
 $stores = $store->stores_get_list();
-foreach($stores as $_store) {
-	$store->updateStoreFeaturedItems($_store->featured_item,$_store->store_id);
-}
+foreach($stores as $_store) { $store->updateStoreFeaturedItems($_store->featured_item,$_store->store_id); }
 
 ?>
