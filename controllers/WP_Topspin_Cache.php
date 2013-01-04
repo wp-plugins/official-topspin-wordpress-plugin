@@ -91,6 +91,10 @@ class WP_Topspin_Cache {
 								if(file_exists($artistAttachmentFile)) { unlink($artistAttachmentFile); }
 								// Update attachment file
 								update_attached_file($artistAttachmentId, $artistAvatarFile['path']);
+								// Re-generate attachment metadata
+								if(!function_exists('wp_generate_attachment_metadata')) { require_once(sprintf('%swp-admin/includes/image.php', ABSPATH)); }
+								$attachmentData = wp_generate_attachment_metadata($artistAttachmentId, $artistAvatarFile['path']);
+								wp_update_attachment_metadata($artistAttachmentId, $attachmentData);
 							}
 							else { error_log('Topspin Error: Failed caching artist avatar.'); }
 						}
@@ -323,6 +327,10 @@ class WP_Topspin_Cache {
 					if(file_exists($thumbAttachment)) { unlink($thumbAttachment); }
 					// Update attachment file
 					update_attached_file($thumbPostId, $thumbFile['path']);
+					// Re-generate attachment metadata
+					if(!function_exists('wp_generate_attachment_metadata')) { require_once(sprintf('%swp-admin/includes/image.php', ABSPATH)); }
+					$attachmentData = wp_generate_attachment_metadata($thumbPostId, $thumbFile['path']);
+					wp_update_attachment_metadata($thumbPostId, $attachmentData);
 				}
 				else { error_log('Topspin Error: Failed caching offer image.'); }
 			}
@@ -351,7 +359,7 @@ class WP_Topspin_Cache {
 		$offer = WP_Topspin::getOfferMeta($offerPostId);
 		if($offer) {
 			// Digital items are always in stock
-			if($offer->product_type == 'digital_package') { $inStock = true; }
+			if(in_array($offer->product_type, array('digital_package', 'ticket'))) { $inStock = true; }
 			// Else, request the product
 			else if(isset($offer->mobile_url)) {
 				$params = array(
